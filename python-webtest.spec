@@ -24,6 +24,7 @@ BuildRequires:	python-setuptools
 BuildRequires:	python3-WebOb
 BuildRequires:	python3-devel
 BuildRequires:	python3-dtopt
+BuildRequires:	python3-modules
 BuildRequires:	python3-nose
 BuildRequires:	python3-setuptools
 %endif
