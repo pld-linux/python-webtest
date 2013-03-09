@@ -20,6 +20,7 @@ BuildRequires:	python-WebOb
 BuildRequires:	python-dtopt
 BuildRequires:	python-nose
 BuildRequires:	python-setuptools
+BuildRequires:	rpm-pythonprov
 %if %{with python3}
 BuildRequires:	python3-WebOb
 BuildRequires:	python3-devel
