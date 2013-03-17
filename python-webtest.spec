@@ -10,7 +10,7 @@
 Summary:	Helper to test WSGI applications
 Name:		python-%{module}
 Version:	1.3.4
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 URL:		http://pythonpaste.org/webtest/
@@ -111,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/*
 %{py3_sitescriptdir}/WebTest-%{version}-py*.egg-info
+%dir %{py3_sitescriptdir}/webtest
 %{py3_sitescriptdir}/%{module}/*.py
 %{py3_sitescriptdir}/%{module}/__pycache__
 %endif
