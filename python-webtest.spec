@@ -56,46 +56,28 @@ with any WSGI-compatible framework.
 # Remove bundled egg info if it exists.
 rm -r *.egg-info
 
-%if %{with python3}
-rm -rf py3
-set -- *
-install -d py3
-cp -a "$@" py3
-%endif
-
 %build
-%{__python} setup.py build
+%py_build
 
 %if %{with python3}
-cd py3
-%{__python3} setup.py build
-cd ..
+%py3_build
 %endif
 
 %if %{with tests}
-PYTHONPATH=$(pwd) %{__python} setup.py test
+PYTHONPATH=build-2/lib %{__python} setup.py test
 
 %if %{with python3}
-cd py3
-#PYTHONPATH=$(pwd) %{__python3} setup.py test
+#PYTHONPATH=build-3/lib %{__python3} setup.py test
 %endif
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
-cd py3
-%{__python3} setup.py install \
-	--skip-build \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
-cd ..
+%py3_install
 %endif
 
-%{__python} setup.py install \
-	--skip-build \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
