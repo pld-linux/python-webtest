@@ -14,6 +14,7 @@ Release:	5
 License:	MIT
 Group:		Libraries/Python
 URL:		http://pythonpaste.org/webtest/
+BuildRequires:	rpmbuild(macros) >= 1.710
 Source0:	http://pypi.python.org/packages/source/W/WebTest/WebTest-%{version}.tar.gz
 # Source0-md5:	be4b448e91306f297e6e302c3ebe9540
 BuildRequires:	python-WebOb
