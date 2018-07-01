@@ -10,7 +10,7 @@
 Summary:	Helper to test WSGI applications
 Name:		python-%{module}
 Version:	1.3.4
-Release:	6
+Release:	7
 License:	MIT
 Group:		Libraries/Python
 URL:		http://pythonpaste.org/webtest/
