@@ -1,0 +1,39 @@
+--- WebTest-2.0.30/setup.py.orig	2018-06-23 14:53:14.000000000 +0200
++++ WebTest-2.0.30/setup.py	2018-07-21 19:40:24.867113047 +0200
+@@ -15,7 +15,7 @@
+ ]
+ 
+ tests_require = [
+-    'nose<1.3.0', 'coverage', 'mock',
++    'nose', 'coverage',
+     'PasteDeploy', 'WSGIProxy2', 'pyquery'
+ ]
+ 
+--- WebTest-2.0.30/tests/test_app.py.orig	2018-06-23 14:53:14.000000000 +0200
++++ WebTest-2.0.30/tests/test_app.py	2018-07-21 19:42:50.133777666 +0200
+@@ -10,7 +10,10 @@
+ from tests.compat import unittest
+ import os
+ import six
+-import mock
++try:
++    import mock
++except ImportError:
++    from unittest import mock
+ import webtest
+ 
+ 
+--- WebTest-2.0.30/tests/test_lint.py.orig	2018-06-23 14:53:14.000000000 +0200
++++ WebTest-2.0.30/tests/test_lint.py	2018-07-21 19:43:14.073777387 +0200
+@@ -7,7 +7,10 @@
+ from webob import Request, Response
+ 
+ import warnings
+-import mock
++try:
++    import mock
++except ImportError:
++    from unittest import mock
+ 
+ from webtest import TestApp
+ from webtest.compat import to_bytes
