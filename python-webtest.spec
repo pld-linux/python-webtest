@@ -10,7 +10,7 @@ Summary:	Helper to test WSGI applications
 Summary(pl.UTF-8):	Moduł pomocniczy do testowania aplikacji WSGI
 Name:		python-%{module}
 Version:	2.0.30
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/webtest/
