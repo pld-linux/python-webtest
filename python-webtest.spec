@@ -9,13 +9,14 @@
 Summary:	Helper to test WSGI applications
 Summary(pl.UTF-8):	Moduł pomocniczy do testowania aplikacji WSGI
 Name:		python-%{module}
-Version:	2.0.30
-Release:	6
+# keep 2.x here for python2 support
+Version:	2.0.35
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/webtest/
 Source0:	https://files.pythonhosted.org/packages/source/W/WebTest/WebTest-%{version}.tar.gz
-# Source0-md5:	0dd5a9093922e08e452f60d7d2eae99a
+# Source0-md5:	a5d027ffa0991fdf20e305c62bd37791
 Patch0:		%{name}-deps.patch
 URL:		http://webtest.pythonpaste.org/
 %if %{with python2}
@@ -36,7 +37,7 @@ BuildRequires:	python-waitress >= 0.8.5
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.3
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-PasteDeploy
@@ -53,10 +54,12 @@ BuildRequires:	python3-waitress >= 0.8.5
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
-BuildRequires:	sphinx-pdg
+BuildRequires:	python-docutils
+BuildRequires:	python-pylons-sphinx-themes >= 1.0.8
+BuildRequires:	sphinx-pdg-2 >= 1.8.1
 %endif
 Requires:	python-modules >= 1:2.7
-Obsoletes:	python-WebTest
+Obsoletes:	python-WebTest < 1.4
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -78,7 +81,7 @@ przy użyciu dowolnego szkieletu zgodnego z WSGI.
 Summary:	Helper to test WSGI applications
 Summary(pl.UTF-8):	Moduł pomocniczy do testowania aplikacji WSGI
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.3
+Requires:	python3-modules >= 1:3.5
 
 %description -n python3-webtest
 WebTest wraps any WSGI application and makes it easy to send test
@@ -123,7 +126,8 @@ Dokumentacja API modułu Pythona WebTest.
 
 %if %{with doc}
 PYTHONPATH=$(pwd) \
-%{__make} -C docs html
+%{__make} -C docs html \
+	SPHINXBUILD=sphinx-build-2
 %endif
 
 %install
@@ -145,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG.rst README.rst docs/license.rst
+%doc CHANGELOG.rst README.rst license.rst
 %{py_sitescriptdir}/webtest
 %{py_sitescriptdir}/WebTest-%{version}-py*.egg-info
 %endif
@@ -153,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-webtest
 %defattr(644,root,root,755)
-%doc CHANGELOG.rst README.rst docs/license.rst
+%doc CHANGELOG.rst README.rst license.rst
 %{py3_sitescriptdir}/webtest
 %{py3_sitescriptdir}/WebTest-%{version}-py*.egg-info
 %endif
@@ -161,5 +165,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with doc}
 %files apidocs
 %defattr(644,root,root,755)
-%doc docs/_build/html/{_static,*.html,*.js}
+%doc docs/_build/html/{_modules,_static,*.html,*.js}
 %endif
