@@ -110,7 +110,7 @@ Dokumentacja API modułu Pythona WebTest.
 
 %prep
 %setup -q -n WebTest-%{version}
-%patch0 -p1
+%patch -P 0 -p1
 
 # Remove bundled egg info
 %{__rm} -r *.egg-info
