@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Moduł pomocniczy do testowania aplikacji WSGI
 Name:		python-%{module}
 # keep 2.x here for python2 support
 Version:	2.0.35
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/webtest/
